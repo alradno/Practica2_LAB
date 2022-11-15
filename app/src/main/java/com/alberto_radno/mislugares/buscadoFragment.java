@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
+import androidx.room.Room;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ public class buscadoFragment extends Fragment {
 
     String nombreBuscado;
     String localizacionBuscada;
+    float valoracionBuscada;
     EditText resultados;
 
     public buscadoFragment() {
@@ -35,10 +37,19 @@ public class buscadoFragment extends Fragment {
             @Override
             public void onFragmentResult(@NonNull String key, @NonNull Bundle bundle) {
 
+                if(nombreBuscado != null){
+                    Log.i("__nombreBuscado", nombreBuscado);
+                }
                 nombreBuscado = (String)bundle.getString("nombreBuscado");
                 localizacionBuscada = (String)bundle.getString("localizacionBuscada");
-
-                Toast.makeText(getContext(), "Buscando por "+nombreBuscado, Toast.LENGTH_SHORT).show();
+                if(localizacionBuscada != null){
+                    Log.i("__Localizacion2", localizacionBuscada);
+                }
+                valoracionBuscada = (float)bundle.getFloat("valoracionBuscada");
+                if(valoracionBuscada != 0){
+                    Log.i("__Valoracion2", String.valueOf(valoracionBuscada));
+                }
+                buscar();
             }
         });
 
@@ -53,32 +64,42 @@ public class buscadoFragment extends Fragment {
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-        //Buscar en la base de datos
-        miBD admin = new miBD(getContext(), "lugares", null, 1);
-        SQLiteDatabase BD = admin.getWritableDatabase();
-
         resultados = view.findViewById(R.id.resultadosText);
 
-        if(nombreBuscado != null){
-            Cursor fila = BD.rawQuery("SELECT * FROM lugares WHERE nombre = " + nombreBuscado, null);
-            while(fila.moveToNext()){
-                resultados.append(fila.getString(0) + " " + fila.getString(1) + " " + fila.getString(2) + " " + fila.getString(3));
-            }
-        }
-        else if(localizacionBuscada != null){
-            Cursor fila = BD.rawQuery("SELECT * FROM lugares WHERE localizacion = " + localizacionBuscada, null);
-            while(fila.moveToNext()){
-                resultados.append(fila.getString(0) + " " + fila.getString(1) + " " + fila.getString(2) + " " + fila.getString(3));
-            }
-        }
-        else{
-            resultados.setText("No se ha encontrado nada");
-        }
     }
 
     public void mostrarResultados(String resultados) {
         this.resultados.setText(resultados);
+    }
+
+    public void buscar(){
+
+        //Buscar en la base de datos
+        AppDataBase db = Room.databaseBuilder(getContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();
+
+        if(nombreBuscado != null || localizacionBuscada != null || valoracionBuscada != 0) {
+
+            Lugar lugar = null;
+
+            if (nombreBuscado != null) {
+                //Log.i("__nombreBuscado", nombreBuscado);
+                lugar = db.lugarDao().findByName(nombreBuscado);
+            } else if (localizacionBuscada != null) {
+                //Log.i("__localizacionBuscada", localizacionBuscada);
+                lugar = db.lugarDao().findByLocation(localizacionBuscada);
+
+            } else if (valoracionBuscada != 0) {
+                //Log.i("__valoracionBuscada", String.valueOf(valoracionBuscada));
+                lugar = db.lugarDao().findByRating(valoracionBuscada);
+            }
+            if(lugar != null){
+                resultados.append(lugar.getNombre() + " " + lugar.getLocalizacion() + " " + lugar.getValoracion() + "\n");
+            }else{
+                resultados.append("No se ha encontrado ningún lugar con esos datos");
+            }
+        }
+        else{
+            Toast.makeText(getContext(), "No se ha introducido ningún criterio de búsqueda", Toast.LENGTH_SHORT).show();
+        }
     }
 }
