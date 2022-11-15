@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MisLugares</string>
+    <string name="editar">Editar</string>
+    <string name="_0_5">0/5</string>
+    <string name="localizacion">Localizacion</string>
+    <string name="mas">MAS</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="a_adir">Añadir</string>
+    <string name="buscar">Buscar</string>
+    <string name="nombre">Nombre</string>
+    <string name="borrar">Borrar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nombreBuscado">Nombre</string>
+    <string name="buscado">Buscar</string>
+    <string name="resultados">Resultados</string>
+
+</resources>
