@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.util.Log;
@@ -24,6 +25,8 @@ public class buscadoFragment extends Fragment {
     String localizacionBuscada;
     float valoracionBuscada;
     EditText resultados;
+    List<Lugar> lugares;
+    RecyclerView recyclerView;
 
     public buscadoFragment() {
         // Required empty public constructor
@@ -52,6 +55,7 @@ public class buscadoFragment extends Fragment {
                     Log.i("__Valoracion2", String.valueOf(valoracionBuscada));
                 }
                 buscar();
+                buscar2();
             }
         });
 
@@ -66,7 +70,7 @@ public class buscadoFragment extends Fragment {
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        resultados = view.findViewById(R.id.resultadosText);
+        //resultados = view.findViewById(R.id.resultadosText);
 
     }
 
@@ -81,29 +85,86 @@ public class buscadoFragment extends Fragment {
 
         if(nombreBuscado != null || localizacionBuscada != null || valoracionBuscada != 0) {
 
+            //Buscar por nombre
+            if (nombreBuscado != null) {
+                //Log.i("__nombreBuscado", nombreBuscado);
+                lugares = db.lugarDao().findAllByName(nombreBuscado);
+            }
+            //Buscar por localizacion
+            else if (localizacionBuscada != null && valoracionBuscada == 0) {
+                //Log.i("__localizacionBuscada", localizacionBuscada);
+                lugares = db.lugarDao().findAllByLocation(localizacionBuscada);
+
+            }
+            //Buscar por valoracion
+            else if (valoracionBuscada != 0 && localizacionBuscada == null) {
+                //Log.i("__valoracionBuscada", String.valueOf(valoracionBuscada));
+                lugares = db.lugarDao().findAllByRating(valoracionBuscada);
+            }
+            //Buscar por localizacion y valoracion
+            else if(localizacionBuscada != null && valoracionBuscada != 0){
+                //Log.i("__localizacionBuscada", localizacionBuscada);
+                //Log.i("__valoracionBuscada", String.valueOf(valoracionBuscada));
+                lugares = db.lugarDao().findAllByLocationAndRating(localizacionBuscada, valoracionBuscada);
+            }
+            //Si existe al menos un lugar con los datos buscados
+            if(lugares != null){
+                //Mostrar todos los lugares encontrados en el recycler view
+                recyclerView = getView().findViewById(R.id.recyclerView);
+                recyclerView.setAdapter(new AdapterLugar(getContext(), lugares, R.layout.item_lugar));
+            }
+            else{
+                //resultados.append("No se ha encontrado ningún lugar con esos datos");
+                Toast.makeText(getContext(), "No se ha encontrado ningún lugar con esos datos", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else{
+            Toast.makeText(getContext(), "No se ha introducido ningún criterio de búsqueda", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void buscar2(){
+
+        //Buscar en la base de datos
+        AppDataBase db = Room.databaseBuilder(getContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();
+
+        if(nombreBuscado != null || localizacionBuscada != null || valoracionBuscada != 0) {
+
             List<Lugar> lugar = null;
 
+            //Buscar por nombre
             if (nombreBuscado != null) {
                 //Log.i("__nombreBuscado", nombreBuscado);
                 lugar = db.lugarDao().findAllByName(nombreBuscado);
             }
-            else if (localizacionBuscada != null) {
+            //Buscar por localizacion
+            else if (localizacionBuscada != null && valoracionBuscada == 0) {
                 //Log.i("__localizacionBuscada", localizacionBuscada);
                 lugar = db.lugarDao().findAllByLocation(localizacionBuscada);
 
             }
-            else if (valoracionBuscada != 0) {
+            //Buscar por valoracion
+            else if (valoracionBuscada != 0 && localizacionBuscada == null) {
                 //Log.i("__valoracionBuscada", String.valueOf(valoracionBuscada));
                 lugar = db.lugarDao().findAllByRating(valoracionBuscada);
             }
+            //Buscar por localizacion y valoracion
+            else if(localizacionBuscada != null && valoracionBuscada != 0){
+                //Log.i("__localizacionBuscada", localizacionBuscada);
+                //Log.i("__valoracionBuscada", String.valueOf(valoracionBuscada));
+                lugar = db.lugarDao().findAllByLocationAndRating(localizacionBuscada, valoracionBuscada);
+            }
+            //Si existe al menos un lugar con los datos buscados
             if(lugar != null){
                 //Mostrar todos los lugares encontrados
                 for(Lugar l : lugar){
-                    resultados.append(l.getNombre() + " " + l.getLocalizacion() + " " + l.getValoracion() + "\n");
+                    //resultados.append(l.getNombre() + " " + l.getLocalizacion() + " " + l.getValoracion() + "\n");
+                    System.out.println(l.getNombre() + " " + l.getLocalizacion() + " " + l.getValoracion());
                 }
             }
             else{
-                resultados.append("No se ha encontrado ningún lugar con esos datos");
+                //resultados.append("No se ha encontrado ningún lugar con esos datos");
+                Toast.makeText(getContext(), "No se ha encontrado ningún lugar con esos datos", Toast.LENGTH_SHORT).show();
             }
         }
         else{

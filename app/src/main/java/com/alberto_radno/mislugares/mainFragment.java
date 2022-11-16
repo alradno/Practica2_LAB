@@ -1,8 +1,5 @@
 package com.alberto_radno.mislugares;
 
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -60,7 +57,7 @@ public class mainFragment extends Fragment {
 
         nombreText = view.findViewById(R.id.nombreText);
         localizacionText = view.findViewById(R.id.localizacionText);
-        ratingBar = view.findViewById(R.id.ratingBar);
+        ratingBar = view.findViewById(R.id.ratingBar_item);
 
         anadir.setOnClickListener( v -> {
             {
@@ -71,12 +68,6 @@ public class mainFragment extends Fragment {
         buscar.setOnClickListener( v -> {
             {
                 buscar(view);
-            }
-        });
-
-        mas.setOnClickListener( v -> {
-            {
-                buscar2();
             }
         });
 
@@ -103,31 +94,9 @@ public class mainFragment extends Fragment {
         localizacionText.setText("");
         ratingBar.setRating(0);
 
-        Toast.makeText(getContext(), "Lugar añadido", Toast.LENGTH_SHORT).show();
-    }
-
-    public void buscar2() {
-        //Obtener datos de los campos
-        String nombreBuscado = nombreText.getText().toString();
-        String localizacionBuscada = localizacionText.getText().toString();
-
-        //Buscar en la base de datos
-        AppDataBase db = Room.databaseBuilder(getContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();
-        Lugar lugar = db.lugarDao().findByName(nombreBuscado);
-
-        if (lugar != null) {
-            nombreText.setText(lugar.getNombre());
-            localizacionText.setText(lugar.getLocalizacion());
-            ratingBar.setRating(lugar.getValoracion());
-        } else {
-            Toast.makeText(getContext(), "Lugar no encontrado", Toast.LENGTH_SHORT).show();
-        }
     }
 
     public void buscar(View view){
-        //Buscar en la base de datos
-        //miBD admin = new miBD(getContext(), "lugares", null, 1);
-        //SQLiteDatabase BD = admin.getWritableDatabase();
 
         String nombre = nombreText.getText().toString();
         String localizacion = localizacionText.getText().toString();
@@ -160,31 +129,4 @@ public class mainFragment extends Fragment {
         }
     }
 
-    /*public void mas(){
-        //Ver en la base de datos
-        miBD admin = new miBD(getContext(), "administracion", null, 1);
-        SQLiteDatabase BD = admin.getWritableDatabase();
-
-        String nombre = nombreText.getText().toString();
-
-        //float valoracion = ratingBar.getRating();
-
-        if(!nombre.isEmpty()){
-
-            Cursor fila = BD.rawQuery("select localizacion from Lugares where nombre = " + nombre, null);
-
-            if(fila.moveToFirst()){
-                localizacionText.setText(fila.getString(1));
-                BD.close();
-            }
-            else{
-                Toast.makeText(getContext(), "No existe el lugar", Toast.LENGTH_SHORT).show();
-                BD.close();
-            }
-        }
-        else{
-            Toast.makeText(getContext(), "Debes rellenar el campo nombre", Toast.LENGTH_SHORT).show();
-        }
-
-    }*/
 }

@@ -14,5 +14,9 @@
     <string name="nombreBuscado">Nombre</string>
     <string name="buscado">Buscar</string>
     <string name="resultados">Resultados</string>
+    <string name="nombre_item">Nombre</string>
+    <string name="localizacion_item">Localizacion</string>
+    <string name="telefono_item">Telefono</string>
+    <string name="imagenlugar">imagenLugar</string>
 
 </resources>
