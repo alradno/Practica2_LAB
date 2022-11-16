@@ -25,4 +25,13 @@ public interface LugarDao {
     Lugar findByLocation(String localizacion);
     @Query("SELECT * FROM tabla_mis_lugares WHERE valoracion = :valoracion")
     Lugar findByRating(float valoracion);
+    //Encontrar todos los lugares con el nombre indicado
+    @Query("SELECT * FROM tabla_mis_lugares WHERE nombre LIKE :nombre")
+    List<Lugar> findAllByName(String nombre);
+    //Encontrar todos los lugares con la localización indicada
+    @Query("SELECT * FROM tabla_mis_lugares WHERE localizacion LIKE :localizacion")
+    List<Lugar> findAllByLocation(String localizacion);
+    //Encontrar todos los lugares con la valoración indicada
+    @Query("SELECT * FROM tabla_mis_lugares WHERE valoracion LIKE :valoracion")
+    List<Lugar> findAllByRating(float valoracion);
 }

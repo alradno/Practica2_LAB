@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class buscadoFragment extends Fragment {
 
     String nombreBuscado;
@@ -37,10 +39,10 @@ public class buscadoFragment extends Fragment {
             @Override
             public void onFragmentResult(@NonNull String key, @NonNull Bundle bundle) {
 
+                nombreBuscado = (String)bundle.getString("nombreBuscado");
                 if(nombreBuscado != null){
                     Log.i("__nombreBuscado", nombreBuscado);
                 }
-                nombreBuscado = (String)bundle.getString("nombreBuscado");
                 localizacionBuscada = (String)bundle.getString("localizacionBuscada");
                 if(localizacionBuscada != null){
                     Log.i("__Localizacion2", localizacionBuscada);
@@ -79,22 +81,28 @@ public class buscadoFragment extends Fragment {
 
         if(nombreBuscado != null || localizacionBuscada != null || valoracionBuscada != 0) {
 
-            Lugar lugar = null;
+            List<Lugar> lugar = null;
 
             if (nombreBuscado != null) {
                 //Log.i("__nombreBuscado", nombreBuscado);
-                lugar = db.lugarDao().findByName(nombreBuscado);
-            } else if (localizacionBuscada != null) {
+                lugar = db.lugarDao().findAllByName(nombreBuscado);
+            }
+            else if (localizacionBuscada != null) {
                 //Log.i("__localizacionBuscada", localizacionBuscada);
-                lugar = db.lugarDao().findByLocation(localizacionBuscada);
+                lugar = db.lugarDao().findAllByLocation(localizacionBuscada);
 
-            } else if (valoracionBuscada != 0) {
+            }
+            else if (valoracionBuscada != 0) {
                 //Log.i("__valoracionBuscada", String.valueOf(valoracionBuscada));
-                lugar = db.lugarDao().findByRating(valoracionBuscada);
+                lugar = db.lugarDao().findAllByRating(valoracionBuscada);
             }
             if(lugar != null){
-                resultados.append(lugar.getNombre() + " " + lugar.getLocalizacion() + " " + lugar.getValoracion() + "\n");
-            }else{
+                //Mostrar todos los lugares encontrados
+                for(Lugar l : lugar){
+                    resultados.append(l.getNombre() + " " + l.getLocalizacion() + " " + l.getValoracion() + "\n");
+                }
+            }
+            else{
                 resultados.append("No se ha encontrado ningún lugar con esos datos");
             }
         }
