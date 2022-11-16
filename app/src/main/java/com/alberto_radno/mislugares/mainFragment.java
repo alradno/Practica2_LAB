@@ -110,10 +110,14 @@ public class mainFragment extends Fragment {
                 if(!nombre.isEmpty()){
                     result.putString("nombreBuscado", nombre);
                 }
-                else if(!localizacion.isEmpty()){
+                else if(!localizacion.isEmpty() && valoracion == 0){
                     result.putString("localizacionBuscada", localizacion);
                 }
-                else if(valoracion != 0){
+                else if(valoracion != 0 && localizacion.isEmpty()){
+                    result.putFloat("valoracionBuscada", valoracion);
+                }
+                else if(!localizacion.isEmpty() && valoracion != 0){
+                    result.putString("localizacionBuscada", localizacion);
                     result.putFloat("valoracionBuscada", valoracion);
                 }
 

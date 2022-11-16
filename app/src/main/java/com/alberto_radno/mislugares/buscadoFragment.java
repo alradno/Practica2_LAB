@@ -111,7 +111,8 @@ public class buscadoFragment extends Fragment {
             if(lugares != null){
                 //Mostrar todos los lugares encontrados en el recycler view
                 recyclerView = getView().findViewById(R.id.recyclerView);
-                recyclerView.setAdapter(new AdapterLugar(getContext(), lugares, R.layout.item_lugar));
+                recyclerView.setAdapter(new AdapterLugar(getContext(), lugares));
+                System.out.println("Lugares encontrados: " + lugares.size());
             }
             else{
                 //resultados.append("No se ha encontrado ningún lugar con esos datos");

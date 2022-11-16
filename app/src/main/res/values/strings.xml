@@ -18,5 +18,6 @@
     <string name="localizacion_item">Localizacion</string>
     <string name="telefono_item">Telefono</string>
     <string name="imagenlugar">imagenLugar</string>
+    <string name="recyclerview">RecyclerView</string>
 
 </resources>

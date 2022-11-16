@@ -28,7 +28,7 @@ public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> 
         this.lugares = lugares;
     }
 
-    public AdapterLugar(Context context, List<Lugar> lugares, int item_lugar) {
+    public AdapterLugar(Context context, List<Lugar> lugares) {
         this.context = context;
         this.lugares = lugares;
     }
@@ -64,16 +64,16 @@ public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> 
             valoracion = itemView.findViewById(R.id.ratingBar_item);
         }
 
-        /*public void bind(Lugar lugar, AdapterView.OnItemClickListener listener) {
+        public void bind(Lugar lugar, AdapterView.OnItemClickListener listener) {
             nombre.setText(lugar.getNombre());
             localizacion.setText(lugar.getLocalizacion());
-            ratingBar.setRating(lugar.getValoracion());
+            valoracion.setRating(lugar.getValoracion());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     listener.onItemClick(null, v, getAdapterPosition(), v.getId());
                 }
             });
-        }*/
+        }
     }
 }

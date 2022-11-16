@@ -11,15 +11,14 @@
         android:id="@+id/nombre_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="RecyclerView"
-        android:textSize="30dp"/>
+        android:text="@string/recyclerview"
+        android:textSize="30sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="225dp"
+        android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:background="#FF0000"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_lugar" />
