@@ -24,15 +24,6 @@ public interface LugarDao {
     @Query("SELECT * FROM tabla_mis_lugares WHERE id = :id")
     Lugar findById(int id);
 
-    @Query("SELECT * FROM tabla_mis_lugares WHERE nombre = :nombre")
-    Lugar findByName(String nombre);
-
-    @Query("SELECT * FROM tabla_mis_lugares WHERE localizacion = :localizacion")
-    Lugar findByLocation(String localizacion);
-
-    @Query("SELECT * FROM tabla_mis_lugares WHERE valoracion = :valoracion")
-    Lugar findByRating(float valoracion);
-
     //Encontrar todos los lugares con el nombre indicado
     @Query("SELECT * FROM tabla_mis_lugares WHERE nombre LIKE :nombre")
     List<Lugar> findAllByName(String nombre);
@@ -48,4 +39,12 @@ public interface LugarDao {
     //Encontrar todos los lugares con la localización y el rating indicados
     @Query("SELECT * FROM tabla_mis_lugares WHERE localizacion LIKE :localizacion AND valoracion LIKE :valoracion")
     List<Lugar> findAllByLocationAndRating(String localizacion, float valoracion);
+
+    //Encontrar todos los lugares con el tipo indicado
+    @Query("SELECT * FROM tabla_mis_lugares WHERE tipo LIKE :tipo")
+    List<Lugar> findAllByType(String tipo);
+
+    //Borrar todos los lugares
+    @Query("DELETE FROM tabla_mis_lugares")
+    void deleteAll();
 }

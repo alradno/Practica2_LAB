@@ -10,11 +10,11 @@
         android:id="@+id/anadirButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="56dp"
         android:text="@string/a_adir"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/masButton" />
+        app:layout_constraintTop_toBottomOf="@+id/tipoText" />
 
     <EditText
         android:id="@+id/nombreText"
@@ -51,20 +51,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="56dp"
         android:text="@string/buscar"
         app:layout_constraintStart_toEndOf="@+id/anadirButton"
-        app:layout_constraintTop_toBottomOf="@+id/masButton" />
-
-    <Button
-        android:id="@+id/masButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/mas"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingText" />
+        app:layout_constraintTop_toBottomOf="@+id/tipoText" />
 
     <Button
         android:id="@+id/editarButton"
@@ -97,14 +87,16 @@
         app:layout_constraintTop_toBottomOf="@+id/localizacionText"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <TextView
-        android:id="@+id/ratingText"
+    <EditText
+        android:id="@+id/tipoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/_0_5"
+        android:layout_marginTop="52dp"
+        android:ems="10"
+        android:hint="Tipo"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar_item" />
 

@@ -18,5 +18,14 @@
         android:id="@+id/buscadoFragment"
         android:name="com.alberto_radno.mislugares.buscadoFragment"
         android:label="fragment_buscado"
-        tools:layout="@layout/fragment_buscado" />
+        tools:layout="@layout/fragment_buscado" >
+        <action
+            android:id="@+id/action_buscadoFragment_to_infoFragment"
+            app:destination="@id/infoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.alberto_radno.mislugares.InfoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" />
 </navigation>

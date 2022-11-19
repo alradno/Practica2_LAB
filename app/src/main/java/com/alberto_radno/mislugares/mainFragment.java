@@ -21,11 +21,11 @@ public class mainFragment extends Fragment {
     Button buscar;
     Button editar;
     Button borrar;
-    Button mas;
 
     EditText nombreText;
     EditText localizacionText;
     RatingBar ratingBar;
+    EditText tipoText;
 
 
     public mainFragment() {
@@ -53,11 +53,11 @@ public class mainFragment extends Fragment {
         buscar = view.findViewById(R.id.buscarButton);
         editar = view.findViewById(R.id.editarButton);
         borrar = view.findViewById(R.id.borrarButton);
-        mas = view.findViewById(R.id.masButton);
 
         nombreText = view.findViewById(R.id.nombreText);
         localizacionText = view.findViewById(R.id.localizacionText);
         ratingBar = view.findViewById(R.id.ratingBar_item);
+        tipoText = view.findViewById(R.id.tipoText);
 
         anadir.setOnClickListener( v -> {
             {
@@ -78,10 +78,11 @@ public class mainFragment extends Fragment {
         String nombre = nombreText.getText().toString();
         String localizacion = localizacionText.getText().toString();
         float valoracion = ratingBar.getRating();
+        String tipo = tipoText.getText().toString();
 
-        if(!nombre.isEmpty() && !localizacion.isEmpty() && valoracion != 0) {
+        if(!nombre.isEmpty() && !localizacion.isEmpty() && valoracion != 0 && !tipo.isEmpty() && tipo != null){
             //Crear objeto Lugar
-            Lugar lugar = new Lugar(nombre, localizacion, valoracion);
+            Lugar lugar = new Lugar(nombre, localizacion, valoracion, tipo);
             //Insertar en la base de datos
             AppDataBase db = Room.databaseBuilder(getContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();
             db.lugarDao().insert(lugar);
@@ -93,6 +94,7 @@ public class mainFragment extends Fragment {
         nombreText.setText("");
         localizacionText.setText("");
         ratingBar.setRating(0);
+        tipoText.setText("");
 
     }
 
@@ -101,9 +103,10 @@ public class mainFragment extends Fragment {
         String nombre = nombreText.getText().toString();
         String localizacion = localizacionText.getText().toString();
         float valoracion = ratingBar.getRating();
+        String tipo = tipoText.getText().toString();
 
 
-        if(!nombre.isEmpty() || !localizacion.isEmpty() || valoracion != 0){
+        if(!nombre.isEmpty() || !localizacion.isEmpty() || valoracion != 0 || !tipo.isEmpty()){
 
                 Bundle result = new Bundle();
 
@@ -115,6 +118,9 @@ public class mainFragment extends Fragment {
                 }
                 else if(valoracion != 0 && localizacion.isEmpty()){
                     result.putFloat("valoracionBuscada", valoracion);
+                }
+                else if(!tipo.isEmpty()){
+                    result.putString("tipoBuscado", tipo);
                 }
                 else if(!localizacion.isEmpty() && valoracion != 0){
                     result.putString("localizacionBuscada", localizacion);
@@ -128,8 +134,20 @@ public class mainFragment extends Fragment {
                 navController.navigate(R.id.action_mainFragment_to_buscadoFragment);
 
         }
-        else {
-            Toast.makeText(getContext(), "Debes rellenar al menos un campo", Toast.LENGTH_SHORT).show();
+        //Si no hay filtros muestra todos los lugares
+        else{
+            nombre = null;
+            localizacion = null;
+            valoracion = 0;
+            tipo = null;
+            Bundle result = new Bundle();
+            result.putString("nombreBuscado", nombre);
+            result.putString("localizacionBuscada", localizacion);
+            result.putFloat("valoracionBuscada", valoracion);
+            result.putString("tipoBuscado", tipo);
+            //Abrir buscadoFragment
+            NavController navController = Navigation.findNavController(view);
+            navController.navigate(R.id.action_mainFragment_to_buscadoFragment);
         }
     }
 

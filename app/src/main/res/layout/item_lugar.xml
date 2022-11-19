@@ -28,20 +28,20 @@
             android:id="@+id/nombre_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="56dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/nombre_item"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.239" />
+            app:layout_constraintVertical_bias="0.237" />
 
         <TextView
             android:id="@+id/localizacion_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="56dp"
             android:layout_marginTop="56dp"
             android:text="@string/localizacion_item"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,26 +52,25 @@
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="164dp"
-            android:layout_marginBottom="56dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="84dp"
             android:numStars="5"
             android:rating="3.5"
             android:stepSize="0.5"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.018" />
 
         <TextView
-            android:id="@+id/telefono_item"
+            android:id="@+id/tipo_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="176dp"
-            android:text="@string/telefono_item"
+            android:layout_marginEnd="108dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/tipo"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar_item"
-            app:layout_constraintVertical_bias="0.486" />
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

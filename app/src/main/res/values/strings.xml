@@ -19,5 +19,20 @@
     <string name="telefono_item">Telefono</string>
     <string name="imagenlugar">imagenLugar</string>
     <string name="recyclerview">RecyclerView</string>
+    <string name="tipo">Tipo</string>
+    <string name="nombreinfo">Nombre</string>
+    <string name="localizacioninfo">Localizacion</string>
+    <string name="telefonoinfo">Telefono</string>
+    <string name="tipoinfo">Tipo</string>
+    <string name="urlinfo">url</string>
+    <string name="comentarioinfo">Comentario</string>
+    <string name="menuinfo">Menu</string>
+    <string name="fotoinfo">foto</string>
+    <string name="urledit">URL</string>
+    <string name="tipoedit">Tipo</string>
+    <string name="localizacionedit">Localizacion</string>
+    <string name="nombreedit">Nombre</string>
+    <string name="comentarioedit">Comentario</string>
+    <string name="telefonoedit">Telefono</string>
 
 </resources>

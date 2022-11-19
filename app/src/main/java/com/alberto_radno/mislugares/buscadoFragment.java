@@ -1,5 +1,6 @@
 package com.alberto_radno.mislugares;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -18,12 +19,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.Objects;
 
-public class buscadoFragment extends Fragment {
+public class buscadoFragment extends Fragment  implements RecyclerViewInterface{
 
     String nombreBuscado;
     String localizacionBuscada;
     float valoracionBuscada;
+    String tipoBuscado;
     EditText resultados;
     List<Lugar> lugares;
     RecyclerView recyclerView;
@@ -36,6 +39,7 @@ public class buscadoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         //Obtener datos del bundle de mainFragment
         getParentFragmentManager().setFragmentResultListener("Main_a_Buscado", this, new FragmentResultListener() {
@@ -54,10 +58,17 @@ public class buscadoFragment extends Fragment {
                 if(valoracionBuscada != 0){
                     Log.i("__Valoracion2", String.valueOf(valoracionBuscada));
                 }
+                tipoBuscado = (String)bundle.getString("tipoBuscado");
+                if(tipoBuscado != null){
+                    Log.i("__Tipo2", tipoBuscado);
+                }
+                System.out.println("****************************************************************");
+                Log.i("__********************", "****************");
                 buscar();
-                buscar2();
+                //buscar2();
             }
         });
+
 
     }
 
@@ -68,7 +79,7 @@ public class buscadoFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_buscado, container, false);
     }
 
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //resultados = view.findViewById(R.id.resultadosText);
 
@@ -81,9 +92,11 @@ public class buscadoFragment extends Fragment {
     public void buscar(){
 
         //Buscar en la base de datos
-        AppDataBase db = Room.databaseBuilder(getContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();
+        AppDataBase db = Room.databaseBuilder(requireContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();
+        //db.lugarDao().deleteAll();
 
-        if(nombreBuscado != null || localizacionBuscada != null || valoracionBuscada != 0) {
+        //Si hay algun filtro de busqueda
+        if(nombreBuscado != null || localizacionBuscada != null || valoracionBuscada != 0 || tipoBuscado != null) {
 
             //Buscar por nombre
             if (nombreBuscado != null) {
@@ -101,6 +114,11 @@ public class buscadoFragment extends Fragment {
                 //Log.i("__valoracionBuscada", String.valueOf(valoracionBuscada));
                 lugares = db.lugarDao().findAllByRating(valoracionBuscada);
             }
+            //Buscar por tipo
+            else if(tipoBuscado != null){
+                //Log.i("__tipoBuscado", tipoBuscado);
+                lugares = db.lugarDao().findAllByType(tipoBuscado);
+            }
             //Buscar por localizacion y valoracion
             else if(localizacionBuscada != null && valoracionBuscada != 0){
                 //Log.i("__localizacionBuscada", localizacionBuscada);
@@ -108,23 +126,51 @@ public class buscadoFragment extends Fragment {
                 lugares = db.lugarDao().findAllByLocationAndRating(localizacionBuscada, valoracionBuscada);
             }
             //Si existe al menos un lugar con los datos buscados
-            if(lugares != null){
+            if(lugares.size() > 0){
                 //Mostrar todos los lugares encontrados en el recycler view
                 recyclerView = getView().findViewById(R.id.recyclerView);
-                recyclerView.setAdapter(new AdapterLugar(getContext(), lugares));
+                recyclerView.setAdapter(new AdapterLugar(getContext(), lugares, this));
                 System.out.println("Lugares encontrados: " + lugares.size());
             }
             else{
-                //resultados.append("No se ha encontrado ningún lugar con esos datos");
                 Toast.makeText(getContext(), "No se ha encontrado ningún lugar con esos datos", Toast.LENGTH_SHORT).show();
             }
         }
+        //Si no hay filtros de busqueda
         else{
-            Toast.makeText(getContext(), "No se ha introducido ningún criterio de búsqueda", Toast.LENGTH_SHORT).show();
+
+            /*lugares = db.lugarDao().findAll();
+            System.out.println("*************************************************************************************************************************************************************");
+
+            if(lugares.size() > 0){
+                //Mostrar todos los lugares encontrados en el recycler view
+                recyclerView = getView().findViewById(R.id.recyclerView);
+                recyclerView.setAdapter(new AdapterLugar(getContext(), lugares, this));
+                Toast.makeText(getContext(), "Mostrando todos los lugares", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(getContext(), "La base de datos está vacía", Toast.LENGTH_SHORT).show();
+            }*/
+            Toast.makeText(getContext(), "No se ha introducido ningún filtro de búsqueda", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void buscar2(){
+    @Override
+    public void onItemClick(int position) {
+        Toast.makeText(getContext(), "Click en " + lugares.get(position).getNombre(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onLongItemClick(int position) {
+        //Toast.makeText(getContext(), "Long click en " + lugares.get(position).getNombre(), Toast.LENGTH_SHORT).show();
+        //Pasar el lugar selleccionado a la actvity de editar
+        Intent intent = new Intent(getActivity(), EditarActivity.class);
+        intent.putExtra("id", lugares.get(position).getId());
+        startActivity(intent);
+
+    }
+
+    /*public void buscar2(){
 
         //Buscar en la base de datos
         AppDataBase db = Room.databaseBuilder(getContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();
@@ -171,5 +217,5 @@ public class buscadoFragment extends Fragment {
         else{
             Toast.makeText(getContext(), "No se ha introducido ningún criterio de búsqueda", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 }

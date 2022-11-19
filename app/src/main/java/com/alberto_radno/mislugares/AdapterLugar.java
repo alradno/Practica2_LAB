@@ -16,28 +16,20 @@ import java.util.List;
 public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> {
     private List<Lugar> lugares;
     private Context context;
-    private AdapterView.OnItemClickListener listener;
+    private final RecyclerViewInterface recyclerViewInterface;
 
-    public AdapterLugar(List<Lugar> lugares, Context context, AdapterView.OnItemClickListener listener) {
-        this.lugares = lugares;
-        this.context = context;
-        this.listener = listener;
-    }
 
-    public AdapterLugar(List<Lugar> lugares) {
-        this.lugares = lugares;
-    }
-
-    public AdapterLugar(Context context, List<Lugar> lugares) {
+    public AdapterLugar(Context context, List<Lugar> lugares, RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
         this.lugares = lugares;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lugar, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, recyclerViewInterface);
     }
 
     @Override
@@ -45,6 +37,7 @@ public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> 
         holder.nombre.setText(lugares.get(position).getNombre());
         holder.localizacion.setText(lugares.get(position).getLocalizacion());
         holder.valoracion.setRating(lugares.get(position).getValoracion());
+        holder.tipo.setText(lugares.get(position).getTipo());
     }
 
     @Override
@@ -52,28 +45,37 @@ public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> 
         return lugares.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView nombre;
         TextView localizacion;
         RatingBar valoracion;
+        TextView tipo;
+        private AdapterView.OnItemClickListener listener;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             nombre = itemView.findViewById(R.id.nombre_item);
             localizacion = itemView.findViewById(R.id.localizacion_item);
             valoracion = itemView.findViewById(R.id.ratingBar_item);
-        }
-
-        public void bind(Lugar lugar, AdapterView.OnItemClickListener listener) {
-            nombre.setText(lugar.getNombre());
-            localizacion.setText(lugar.getLocalizacion());
-            valoracion.setRating(lugar.getValoracion());
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.onItemClick(null, v, getAdapterPosition(), v.getId());
+            tipo = itemView.findViewById(R.id.tipo_item);
+            itemView.setOnClickListener(v -> {
+               if(recyclerViewInterface != null){
+                   int position = getAdapterPosition();
+                   if(position != RecyclerView.NO_POSITION){
+                       recyclerViewInterface.onItemClick(position);
+                   }
+               }
+            });
+            itemView.setOnLongClickListener(v -> {
+                if(recyclerViewInterface != null){
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION){
+                        recyclerViewInterface.onLongItemClick(position);
+                    }
                 }
+                return true;
             });
         }
+
     }
 }
