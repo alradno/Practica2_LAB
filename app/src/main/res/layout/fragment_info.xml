@@ -28,7 +28,7 @@
         android:layout_marginTop="100dp"
         android:text="@string/nombreinfo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar_info" />
 
     <TextView
         android:id="@+id/localizacion_info"
@@ -38,10 +38,10 @@
         android:layout_marginEnd="72dp"
         android:text="@string/localizacioninfo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar_info" />
 
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/ratingBar_info"
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

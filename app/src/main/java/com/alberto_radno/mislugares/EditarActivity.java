@@ -1,17 +1,14 @@
 package com.alberto_radno.mislugares;
 
-import static java.security.AccessController.getContext;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
-
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 public class EditarActivity extends AppCompatActivity {
 
@@ -23,6 +20,7 @@ public class EditarActivity extends AppCompatActivity {
     EditText telefonoEditado;
     EditText urlEditada;
     EditText comentarioEditado;
+    Button aceptar;
     int id;
     Lugar lugar;
 
@@ -41,6 +39,7 @@ public class EditarActivity extends AppCompatActivity {
         telefonoEditado = findViewById(R.id.telefono_edit);
         urlEditada = findViewById(R.id.url_edit);
         comentarioEditado = findViewById(R.id.comentario_edit);
+        aceptar = findViewById(R.id.aceptarButton);
 
         id = getIntent().getIntExtra("id", 0);
 
@@ -55,22 +54,23 @@ public class EditarActivity extends AppCompatActivity {
         localizacionEditada.setText(lugar.getLocalizacion());
         tipoEditado.setText(lugar.getTipo());
         valoracionEditada.setRating(lugar.getValoracion());
+        telefonoEditado.setText(lugar.getTelefono());
+        urlEditada.setText(lugar.getUrl());
+        comentarioEditado.setText(lugar.getComentario());
 
-        if(lugar.getTelefono() != null){
-            telefonoEditado.setText(lugar.getTelefono());
-        }
+        aceptar.setOnClickListener(v -> {
+            lugar.setNombre(nombreEditado.getText().toString());
+            lugar.setLocalizacion(localizacionEditada.getText().toString());
+            lugar.setTipo(tipoEditado.getText().toString());
+            lugar.setValoracion(valoracionEditada.getRating());
+            lugar.setTelefono(telefonoEditado.getText().toString());
+            lugar.setUrl(urlEditada.getText().toString());
+            lugar.setComentario(comentarioEditado.getText().toString());
+            db.lugarDao().update(lugar);
+            Toast.makeText(this, "Actualizado correctamente", Toast.LENGTH_SHORT).show();
+            finish();
+        });
 
-        if(lugar.getUrl() != null){
-            urlEditada.setText(lugar.getUrl());
-        }
-
-        if(lugar.getComentario() != null){
-            comentarioEditado.setText(lugar.getComentario());
-        }
-
-        /*if(lugar.getFoto() != null){
-            foto.setImageResource(lugar.getFoto());
-        }*/
 
     }
 }

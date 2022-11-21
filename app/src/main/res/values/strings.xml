@@ -34,5 +34,6 @@
     <string name="nombreedit">Nombre</string>
     <string name="comentarioedit">Comentario</string>
     <string name="telefonoedit">Telefono</string>
+    <string name="aceptar">Aceptar</string>
 
 </resources>

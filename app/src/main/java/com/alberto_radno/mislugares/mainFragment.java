@@ -80,7 +80,7 @@ public class mainFragment extends Fragment {
         float valoracion = ratingBar.getRating();
         String tipo = tipoText.getText().toString();
 
-        if(!nombre.isEmpty() && !localizacion.isEmpty() && valoracion != 0 && !tipo.isEmpty() && tipo != null){
+        if(!nombre.isEmpty() && !localizacion.isEmpty() && valoracion != 0 && !tipo.isEmpty()){
             //Crear objeto Lugar
             Lugar lugar = new Lugar(nombre, localizacion, valoracion, tipo);
             //Insertar en la base de datos
@@ -105,50 +105,20 @@ public class mainFragment extends Fragment {
         float valoracion = ratingBar.getRating();
         String tipo = tipoText.getText().toString();
 
+        Bundle result = new Bundle();
+        Fragment fragment = new buscadoFragment();
 
-        if(!nombre.isEmpty() || !localizacion.isEmpty() || valoracion != 0 || !tipo.isEmpty()){
+        result.putString("nombreBuscado", nombre);
+        result.putString("localizacionBuscada", localizacion);
+        result.putFloat("valoracionBuscada", valoracion);
+        result.putString("tipoBuscado", tipo);
 
-                Bundle result = new Bundle();
+        fragment.setArguments(result);
 
-                if(!nombre.isEmpty()){
-                    result.putString("nombreBuscado", nombre);
-                }
-                else if(!localizacion.isEmpty() && valoracion == 0){
-                    result.putString("localizacionBuscada", localizacion);
-                }
-                else if(valoracion != 0 && localizacion.isEmpty()){
-                    result.putFloat("valoracionBuscada", valoracion);
-                }
-                else if(!tipo.isEmpty()){
-                    result.putString("tipoBuscado", tipo);
-                }
-                else if(!localizacion.isEmpty() && valoracion != 0){
-                    result.putString("localizacionBuscada", localizacion);
-                    result.putFloat("valoracionBuscada", valoracion);
-                }
+        NavController navController = Navigation.findNavController(view);
+        navController.navigate(R.id.action_mainFragment_to_buscadoFragment, result);
 
-                getParentFragmentManager().setFragmentResult("Main_a_Buscado", result);
 
-                //Abrir buscadoFragment
-                NavController navController = Navigation.findNavController(view);
-                navController.navigate(R.id.action_mainFragment_to_buscadoFragment);
-
-        }
-        //Si no hay filtros muestra todos los lugares
-        else{
-            nombre = null;
-            localizacion = null;
-            valoracion = 0;
-            tipo = null;
-            Bundle result = new Bundle();
-            result.putString("nombreBuscado", nombre);
-            result.putString("localizacionBuscada", localizacion);
-            result.putFloat("valoracionBuscada", valoracion);
-            result.putString("tipoBuscado", tipo);
-            //Abrir buscadoFragment
-            NavController navController = Navigation.findNavController(view);
-            navController.navigate(R.id.action_mainFragment_to_buscadoFragment);
-        }
     }
 
 }

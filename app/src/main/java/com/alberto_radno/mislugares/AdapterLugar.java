@@ -50,7 +50,6 @@ public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> 
         TextView localizacion;
         RatingBar valoracion;
         TextView tipo;
-        private AdapterView.OnItemClickListener listener;
 
         public ViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
@@ -58,6 +57,7 @@ public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> 
             localizacion = itemView.findViewById(R.id.localizacion_item);
             valoracion = itemView.findViewById(R.id.ratingBar_item);
             tipo = itemView.findViewById(R.id.tipo_item);
+
             itemView.setOnClickListener(v -> {
                if(recyclerViewInterface != null){
                    int position = getAdapterPosition();
@@ -66,6 +66,7 @@ public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> 
                    }
                }
             });
+
             itemView.setOnLongClickListener(v -> {
                 if(recyclerViewInterface != null){
                     int position = getAdapterPosition();
