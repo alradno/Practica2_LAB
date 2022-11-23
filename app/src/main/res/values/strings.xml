@@ -28,12 +28,13 @@
     <string name="comentarioinfo">Comentario</string>
     <string name="menuinfo">Menu</string>
     <string name="fotoinfo">foto</string>
-    <string name="urledit">URL</string>
     <string name="tipoedit">Tipo</string>
-    <string name="localizacionedit">Localizacion</string>
+    <string name="localizacionedit">Localización</string>
     <string name="nombreedit">Nombre</string>
+    <string name="urledit">URL</string>
+    <string name="aceptaredit">Aceptar</string>
+    <string name="telefonoedit">Teléfono</string>
+    <string name="imagenedit">imagenedit</string>
     <string name="comentarioedit">Comentario</string>
-    <string name="telefonoedit">Telefono</string>
-    <string name="aceptar">Aceptar</string>
 
 </resources>

@@ -67,7 +67,7 @@ public class mainFragment extends Fragment {
 
         buscar.setOnClickListener( v -> {
             {
-                buscar(view);
+                buscar();
             }
         });
 
@@ -98,7 +98,7 @@ public class mainFragment extends Fragment {
 
     }
 
-    public void buscar(View view){
+    public void buscar(){
 
         String nombre = nombreText.getText().toString();
         String localizacion = localizacionText.getText().toString();
@@ -115,7 +115,7 @@ public class mainFragment extends Fragment {
 
         fragment.setArguments(result);
 
-        NavController navController = Navigation.findNavController(view);
+        NavController navController = Navigation.findNavController(this.requireView());
         navController.navigate(R.id.action_mainFragment_to_buscadoFragment, result);
 
 

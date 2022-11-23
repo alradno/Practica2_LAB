@@ -35,11 +35,11 @@ public class EditarActivity extends AppCompatActivity {
         nombreEditado = findViewById(R.id.nombre_edit);
         localizacionEditada = findViewById(R.id.localizacion_edit);
         tipoEditado = findViewById(R.id.tipo_edit);
-        valoracionEditada = findViewById(R.id.valoracion_edit);
+        valoracionEditada = findViewById(R.id.ratingBar_edit);
         telefonoEditado = findViewById(R.id.telefono_edit);
         urlEditada = findViewById(R.id.url_edit);
         comentarioEditado = findViewById(R.id.comentario_edit);
-        aceptar = findViewById(R.id.aceptarButton);
+        aceptar = findViewById(R.id.aceptarButton_edit);
 
         id = getIntent().getIntExtra("id", 0);
 

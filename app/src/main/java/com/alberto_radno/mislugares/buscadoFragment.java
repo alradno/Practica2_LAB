@@ -129,16 +129,11 @@ public class buscadoFragment extends Fragment  implements RecyclerViewInterface{
 
     @Override
     public void onItemClick(int position) {
-        int id = lugares.get(position).getId();
-        Bundle bundle = new Bundle();
-        Fragment fragment = new InfoFragment();
-        bundle.putInt("id", id);
-        fragment.setArguments(bundle);
-        //getParentFragmentManager().setFragmentResult("buscado_a_info", bundle);
 
-        NavController navController = Navigation.findNavController(this.requireView());
-        navController.navigate(R.id.action_buscadoFragment_to_infoFragment);
-        //Toast.makeText(getContext(), "Click en " + lugares.get(position).getNombre(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), infoActivity.class);
+        intent.putExtra("id", lugares.get(position).getId());
+        startActivity(intent);
+
     }
 
     @Override
