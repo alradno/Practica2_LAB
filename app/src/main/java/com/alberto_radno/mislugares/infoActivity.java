@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class infoActivity extends AppCompatActivity {
     TextView url;
     TextView comentario;
     Lugar lugar;
+    Button aceptar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class infoActivity extends AppCompatActivity {
         telefono = findViewById(R.id.telefono_info);
         url = findViewById(R.id.url_info);
         comentario = findViewById(R.id.comentario_info);
+        aceptar = findViewById(R.id.aceptarButton_info);
 
         nombre.setText(lugar.getNombre());
         localizacion.setText(lugar.getLocalizacion());
@@ -44,7 +47,11 @@ public class infoActivity extends AppCompatActivity {
         telefono.setText(lugar.getTelefono());
         url.setText(lugar.getUrl());
         comentario.setText(lugar.getComentario());
-    }
+
+        //Click en boton aceptar y volver a main
+        aceptar.setOnClickListener(v ->
+                finish());
+        }
 
 
 }

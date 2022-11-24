@@ -31,15 +31,15 @@ public class EditarActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Modo edicion", Toast.LENGTH_SHORT).show();
 
-        foto = findViewById(R.id.foto_edit);
-        nombreEditado = findViewById(R.id.nombre_edit);
-        localizacionEditada = findViewById(R.id.localizacion_edit);
-        tipoEditado = findViewById(R.id.tipo_edit);
-        valoracionEditada = findViewById(R.id.ratingBar_edit);
-        telefonoEditado = findViewById(R.id.telefono_edit);
-        urlEditada = findViewById(R.id.url_edit);
-        comentarioEditado = findViewById(R.id.comentario_edit);
-        aceptar = findViewById(R.id.aceptarButton_edit);
+        foto = findViewById(R.id.foto_info);
+        nombreEditado = findViewById(R.id.nombre_info);
+        localizacionEditada = findViewById(R.id.localizacion_info);
+        tipoEditado = findViewById(R.id.tipo_info);
+        valoracionEditada = findViewById(R.id.ratingBar_info);
+        telefonoEditado = findViewById(R.id.telefono_info);
+        urlEditada = findViewById(R.id.url_info);
+        comentarioEditado = findViewById(R.id.comentario_info);
+        aceptar = findViewById(R.id.aceptarButton_info);
 
         id = getIntent().getIntExtra("id", 0);
 
