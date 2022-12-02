@@ -51,8 +51,6 @@ public class mainFragment extends Fragment {
 
         anadir = view.findViewById(R.id.anadirButton);
         buscar = view.findViewById(R.id.buscarButton);
-        editar = view.findViewById(R.id.editarButton);
-        borrar = view.findViewById(R.id.borrarButton);
 
         nombreText = view.findViewById(R.id.nombreText);
         localizacionText = view.findViewById(R.id.localizacionText);
@@ -115,8 +113,11 @@ public class mainFragment extends Fragment {
 
         fragment.setArguments(result);
 
-        NavController navController = Navigation.findNavController(this.requireView());
-        navController.navigate(R.id.action_mainFragment_to_buscadoFragment, result);
+        /*NavController navController = Navigation.findNavController(this.requireView());
+        navController.navigate(R.id.action_mainFragment_to_buscadoFragment, result);*/
+
+        getParentFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).commit();
+
 
 
     }

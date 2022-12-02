@@ -68,7 +68,7 @@ public class buscadoFragment extends Fragment  implements RecyclerViewInterface{
     public void buscar(String nombre, String localizacion, float valoracion, String tipo){
 
         //Buscar en la base de datos
-        AppDataBase db = Room.databaseBuilder(requireContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();
+        AppDataBase db = Room.databaseBuilder(requireContext(), AppDataBase.class, "lugares").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         //db.lugarDao().deleteAll();
 
         //Si hay algun filtro de busqueda
@@ -113,6 +113,8 @@ public class buscadoFragment extends Fragment  implements RecyclerViewInterface{
         }
         //Si no hay filtros de busqueda se muestran todos los lugares
         else{
+            //Borar todos los lugares de la base de datos
+            //db.lugarDao().deleteAll();
             lugares = db.lugarDao().findAll();
 
             if(lugares.size() > 0){
@@ -144,4 +146,20 @@ public class buscadoFragment extends Fragment  implements RecyclerViewInterface{
         startActivity(intent);
 
     }
+
+    /*@Override
+    public void onFavoritoClick(int position) {
+        //Cambiar el estado del favorito
+        AppDataBase db = Room.databaseBuilder(requireContext(), AppDataBase.class, "lugares").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        Lugar lugar = lugares.get(position);
+        if(lugar.getFavorito() == false){
+            lugar.setFavorito(true);
+            Toast.makeText(getContext(), "Añadido a favoritos", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            lugar.setFavorito(false);
+            Toast.makeText(getContext(), "Eliminado de favoritos", Toast.LENGTH_SHORT).show();
+        }
+        db.lugarDao().update(lugar);
+    }*/
 }

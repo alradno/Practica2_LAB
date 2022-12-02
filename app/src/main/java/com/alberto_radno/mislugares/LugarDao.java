@@ -44,7 +44,12 @@ public interface LugarDao {
     @Query("SELECT * FROM tabla_mis_lugares WHERE tipo LIKE :tipo")
     List<Lugar> findAllByType(String tipo);
 
+    //Borrar un lugar segun su id
+    @Query("DELETE FROM tabla_mis_lugares WHERE id = :id")
+    void deleteById(int id);
+
     //Borrar todos los lugares
     @Query("DELETE FROM tabla_mis_lugares")
     void deleteAll();
+
 }

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_buscadoFragment"
             app:destination="@id/buscadoFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_manualFragment"
+            app:destination="@id/manualFragment" />
     </fragment>
     <fragment
         android:id="@+id/buscadoFragment"
@@ -20,12 +23,16 @@
         android:label="fragment_buscado"
         tools:layout="@layout/fragment_buscado" >
         <action
-            android:id="@+id/action_buscadoFragment_to_infoFragment"
-            app:destination="@id/infoFragment" />
+            android:id="@+id/action_buscadoFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
-        android:id="@+id/infoFragment"
-        android:name="com.alberto_radno.mislugares.InfoFragment"
-        android:label="fragment_info"
-        tools:layout="@layout/fragment_info" />
+        android:id="@+id/manualFragment"
+        android:name="com.alberto_radno.mislugares.manualFragment"
+        android:label="fragment_manual"
+        tools:layout="@layout/fragment_manual" >
+        <action
+            android:id="@+id/action_manualFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>

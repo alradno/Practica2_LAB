@@ -24,6 +24,9 @@ public class Lugar {
     public String comentario;
     @ColumnInfo(name = "foto")
     public String foto;
+    //Columna para saber si el lugar es favorito o no
+    @ColumnInfo(name = "favorito")
+    public boolean favorito;
 
 
     public Lugar(String nombre, String localizacion, float valoracion, String tipo) {
@@ -92,4 +95,8 @@ public class Lugar {
     public String getFoto() { return foto; }
 
     public void setFoto(String foto) { this.foto = foto; }
+
+    public boolean getFavorito() { return favorito; }
+
+    public void setFavorito(boolean favorito) { this.favorito = favorito; }
 }

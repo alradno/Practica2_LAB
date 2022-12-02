@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    app:cardCornerRadius="65dp"
+    app:cardElevation="50dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="409dp"
@@ -11,8 +14,21 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="169dp">
 
+        <ImageButton
+            android:id="@+id/favoritoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:layout_marginEnd="40sp"
+            android:backgroundTint="#00FFFFFF"
+            android:contentDescription="@string/favorito"
+            android:src="@drawable/no_favorito"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/foto_item"
             android:layout_width="0dp"
             android:layout_height="108dp"
             android:layout_marginTop="16dp"
@@ -34,7 +50,7 @@
             android:text="@string/nombre_item"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/foto_item"
             app:layout_constraintVertical_bias="0.237" />
 
         <TextView
@@ -45,7 +61,7 @@
             android:layout_marginTop="56dp"
             android:text="@string/localizacion_item"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/foto_item" />
 
         <RatingBar
             android:id="@+id/ratingBar_item"
@@ -59,7 +75,7 @@
             android:stepSize="0.5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/foto_item"
             app:layout_constraintVertical_bias="0.018" />
 
         <TextView

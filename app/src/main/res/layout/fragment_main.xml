@@ -56,26 +56,6 @@
         app:layout_constraintStart_toEndOf="@+id/anadirButton"
         app:layout_constraintTop_toBottomOf="@+id/tipoText" />
 
-    <Button
-        android:id="@+id/editarButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginBottom="88dp"
-        android:text="@string/editar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/borrarButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginBottom="88dp"
-        android:text="@string/borrar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editarButton" />
-
     <RatingBar
         android:id="@+id/ratingBar_item"
         android:layout_width="wrap_content"
@@ -96,6 +76,7 @@
         android:hint="Tipo"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar_item" />

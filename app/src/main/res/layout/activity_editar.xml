@@ -21,18 +21,29 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/foto_info"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/eliminarButton"
+                android:layout_width="63dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="20sp"
+                android:backgroundTint="#FC686565"
+                app:icon="@drawable/papelera"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageView
+                android:id="@+id/foto_editado"
+                android:layout_width="128sp"
+                android:layout_height="128sp"
                 android:layout_gravity="center"
                 android:layout_marginTop="24sp"
                 android:contentDescription="@string/imagenedit"
                 app:srcCompat="@drawable/ic_launcher_background"
                 tools:ignore="ImageContrastCheck" />
 
+
             <RatingBar
-                android:id="@+id/ratingBar_info"
+                android:id="@+id/ratingBar_editado"
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,7 +52,7 @@
                 android:numStars="5" />
 
             <EditText
-                android:id="@+id/nombre_info"
+                android:id="@+id/nombre_editado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -56,7 +67,7 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
-                android:id="@+id/localizacion_info"
+                android:id="@+id/localizacion_editado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -71,7 +82,7 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
-                android:id="@+id/tipo_info"
+                android:id="@+id/tipo_editado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -86,7 +97,7 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
-                android:id="@+id/telefono_info"
+                android:id="@+id/telefono_editado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -101,7 +112,7 @@
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <EditText
-                android:id="@+id/url_info"
+                android:id="@+id/url_editado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -116,7 +127,21 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
             <EditText
-                android:id="@+id/comentario_info"
+                android:id="@+id/url_foto_editado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50sp"
+                android:ems="10"
+                android:hint="@string/url_de_la_foto"
+                android:textColorHint="#78909C"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:inputType="textUri"
+                android:autofillHints="" />
+
+            <EditText
+                android:id="@+id/comentario_editado"
                 android:layout_width="286dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -131,7 +156,7 @@
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextContrastCheck" />
 
             <Button
-                android:id="@+id/aceptarButton_info"
+                android:id="@+id/aceptarButton_editado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
