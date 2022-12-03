@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_mainFragment_to_manualFragment"
             app:destination="@id/manualFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_tipoFragment"
+            app:destination="@id/tipoFragment" />
     </fragment>
     <fragment
         android:id="@+id/buscadoFragment"
@@ -33,6 +36,15 @@
         tools:layout="@layout/fragment_manual" >
         <action
             android:id="@+id/action_manualFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tipoFragment"
+        android:name="com.alberto_radno.mislugares.TipoFragment"
+        android:label="fragment_tipo"
+        tools:layout="@layout/fragment_tipo" >
+        <action
+            android:id="@+id/action_tipoFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

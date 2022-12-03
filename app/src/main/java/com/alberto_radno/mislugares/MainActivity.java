@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        //Boton buscar por defecto
+        binding.navigationView.getMenu().getItem(1).setChecked(true);
         setContentView(binding.getRoot());
         //setContentView(R.layout.activity_main);
 
@@ -33,9 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Si pulsa en el icono de buscar del navigation bar, se abre el fragment buscadoFragment
         binding.navigationView.setOnItemSelectedListener(item -> {
+            //Boton por favoritosButton por defecto marcado
             switch(item.getItemId()) {
                 case R.id.favoritosButton:
-                    //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new buscadoFragment()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, new favoritosFragment()).commit();
                     break;
                 case R.id.buscarButton:
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, new mainFragment()).commit();

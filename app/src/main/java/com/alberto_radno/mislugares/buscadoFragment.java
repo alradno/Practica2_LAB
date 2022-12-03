@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class buscadoFragment extends Fragment  implements RecyclerViewInterface{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Recogemos los datos del fragment anterior
+        //Recogemos los datos del fragment TipoFragment
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             nombreBuscado = bundle.getString("nombreBuscado");
@@ -147,11 +148,12 @@ public class buscadoFragment extends Fragment  implements RecyclerViewInterface{
 
     }
 
-    /*@Override
+    @Override
     public void onFavoritoClick(int position) {
-        //Cambiar el estado del favorito
+
         AppDataBase db = Room.databaseBuilder(requireContext(), AppDataBase.class, "lugares").allowMainThreadQueries().fallbackToDestructiveMigration().build();
-        Lugar lugar = lugares.get(position);
+        Lugar lugar = db.lugarDao().findById(lugares.get(position).getId());
+
         if(lugar.getFavorito() == false){
             lugar.setFavorito(true);
             Toast.makeText(getContext(), "Añadido a favoritos", Toast.LENGTH_SHORT).show();
@@ -161,5 +163,5 @@ public class buscadoFragment extends Fragment  implements RecyclerViewInterface{
             Toast.makeText(getContext(), "Eliminado de favoritos", Toast.LENGTH_SHORT).show();
         }
         db.lugarDao().update(lugar);
-    }*/
+    }
 }

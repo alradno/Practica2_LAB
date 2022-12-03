@@ -52,4 +52,8 @@ public interface LugarDao {
     @Query("DELETE FROM tabla_mis_lugares")
     void deleteAll();
 
+    //Obtener todos los lugares favoritos
+    @Query("SELECT * FROM tabla_mis_lugares WHERE favorito = 1")
+    List<Lugar> findAllFavorites();
+
 }

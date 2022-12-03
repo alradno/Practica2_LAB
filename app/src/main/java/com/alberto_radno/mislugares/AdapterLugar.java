@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -18,15 +19,11 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> {
-    private List<Lugar> lugares;
-    private Context context;
+    private final List<Lugar> lugares;
     private final RecyclerViewInterface recyclerViewInterface;
-    private elegir_Foto elegirFoto;
-    private static Button favorito;
 
 
     public AdapterLugar(Context context, List<Lugar> lugares, RecyclerViewInterface recyclerViewInterface) {
-        this.context = context;
         this.lugares = lugares;
         this.recyclerViewInterface = recyclerViewInterface;
     }
@@ -45,9 +42,13 @@ public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> 
         holder.valoracion.setRating(lugares.get(position).getValoracion());
         holder.tipo.setText(lugares.get(position).getTipo());
         //Glide.with(context).load(lugares.get(position).getFoto()).into(holder.foto);
-        elegirFoto = new elegir_Foto();
+        elegir_Foto elegirFoto = new elegir_Foto();
         int id = elegirFoto.elegirFoto(lugares.get(position).getTipo());
         holder.foto.setImageResource(id);
+
+        if(lugares.get(position).favorito == true){
+            holder.favorito.setImageResource(R.drawable.favorito);
+        }
     }
 
     @Override
@@ -61,6 +62,7 @@ public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> 
         RatingBar valoracion;
         TextView tipo;
         ImageView foto;
+        ImageButton favorito;
 
         public ViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
@@ -69,7 +71,7 @@ public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> 
             valoracion = itemView.findViewById(R.id.ratingBar_item);
             tipo = itemView.findViewById(R.id.tipo_item);
             foto = itemView.findViewById(R.id.foto_item);
-            //favorito = itemView.findViewById(R.id.favoritoButton);
+            favorito = itemView.findViewById(R.id.favoritoButton);
 
             itemView.setOnClickListener(v -> {
                if(recyclerViewInterface != null){
@@ -90,14 +92,20 @@ public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> 
                 return true;
             });
 
-            /*favorito.setOnClickListener(v -> {
+            favorito.setOnClickListener(v -> {
                 if(recyclerViewInterface != null){
                     int position = getAdapterPosition();
                     if(position != RecyclerView.NO_POSITION){
                         recyclerViewInterface.onFavoritoClick(position);
                     }
+                    //Si la imagen es favorito, la cambia a no favorito y viceversa
+                    if(favorito.getDrawable().getConstantState() == itemView.getResources().getDrawable(R.drawable.favorito).getConstantState()){
+                        favorito.setImageResource(R.drawable.no_favorito);
+                    }else{
+                        favorito.setImageResource(R.drawable.favorito);
+                    }
                 }
-            });*/
+            });
 
 
         }

@@ -43,8 +43,8 @@ public class elegir_Foto {
             case "valenciano":
                 id = R.drawable.valenciano;
                 break;
-            case "vegetariano":
-                id = R.drawable.vegetariano;
+            case "vegano":
+                id = R.drawable.vegano;
                 break;
         }
         return id;

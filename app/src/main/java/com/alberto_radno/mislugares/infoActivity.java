@@ -66,7 +66,7 @@ public class infoActivity extends AppCompatActivity {
 
         eliminar.setOnClickListener(v -> {
             db.lugarDao().delete(lugar);
-            finish();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, new buscadoFragment()).commit();
         });
     }
 
