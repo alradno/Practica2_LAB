@@ -73,12 +73,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:ems="10"
-        android:hint="Tipo"
+        android:hint="@string/tipoText"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar_item" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar_item"
+        android:autofillHints="" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

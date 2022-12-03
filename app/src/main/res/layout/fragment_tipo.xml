@@ -23,10 +23,12 @@
                 android:layout_height="125dp"
                 android:layout_marginStart="56dp"
                 android:layout_marginTop="64dp"
+                android:contentDescription="@string/argentino2"
                 android:scaleType="centerInside"
                 android:src="@drawable/argentino"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textView"
@@ -34,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="88dp"
                 android:layout_marginTop="4dp"
-                android:text="Argentino"
+                android:text="@string/argentino"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
@@ -44,10 +46,12 @@
                 android:layout_height="125dp"
                 android:layout_marginTop="64dp"
                 android:layout_marginEnd="56dp"
+                android:contentDescription="@string/bar2"
                 android:scaleType="centerInside"
                 android:src="@drawable/bar"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -55,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="108dp"
-                android:text="Bar"
+                android:text="@string/bar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
 
@@ -65,10 +69,12 @@
                 android:layout_height="125dp"
                 android:layout_marginStart="56dp"
                 android:layout_marginTop="40dp"
+                android:contentDescription="@string/casero2"
                 android:scaleType="centerInside"
                 android:src="@drawable/casero"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButton"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -76,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="96dp"
                 android:layout_marginTop="4dp"
-                android:text="Casero"
+                android:text="@string/casero"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
 
@@ -86,10 +92,12 @@
                 android:layout_height="125dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="56dp"
+                android:contentDescription="@string/coctel2"
                 android:scaleType="centerInside"
                 android:src="@drawable/coctel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -97,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="96dp"
-                android:text="Cóctel"
+                android:text="@string/c_ctel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
 
@@ -107,10 +115,12 @@
                 android:layout_height="125dp"
                 android:layout_marginStart="56dp"
                 android:layout_marginTop="40dp"
+                android:contentDescription="@string/comidarapida2"
                 android:scaleType="centerInside"
                 android:src="@drawable/fast_food"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButton3"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -118,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="72dp"
                 android:layout_marginTop="4dp"
-                android:text="Comida Rápida"
+                android:text="@string/comida_r_pida"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
 
@@ -128,10 +138,12 @@
                 android:layout_height="125dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="56dp"
+                android:contentDescription="@string/gallego2"
                 android:scaleType="centerInside"
                 android:src="@drawable/gallego"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButton4"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -139,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="96dp"
-                android:text="Gallego"
+                android:text="@string/gallego"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton6" />
 
@@ -149,10 +161,12 @@
                 android:layout_height="125dp"
                 android:layout_marginStart="56dp"
                 android:layout_marginTop="40dp"
+                android:contentDescription="@string/italiano2"
                 android:scaleType="centerInside"
                 android:src="@drawable/italiano"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButton5"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -160,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="88dp"
                 android:layout_marginTop="4dp"
-                android:text="Italiano"
+                android:text="@string/italiano"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton7" />
 
@@ -170,10 +184,12 @@
                 android:layout_height="125dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="56dp"
+                android:contentDescription="@string/japones2"
                 android:scaleType="centerInside"
                 android:src="@drawable/japones"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton6" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButton6"
+                tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -181,7 +197,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="92dp"
-                android:text="Japones"
+                android:text="@string/japones"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton8" />
 
@@ -191,10 +207,12 @@
                 android:layout_height="125dp"
                 android:layout_marginStart="56dp"
                 android:layout_marginTop="40dp"
+                android:contentDescription="@string/mexicano2"
                 android:scaleType="centerInside"
                 android:src="@drawable/mexicano"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton7" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButton7"
+                tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -202,7 +220,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="88dp"
                 android:layout_marginTop="4dp"
-                android:text="Mexicano"
+                android:text="@string/mexicano"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton9" />
 
@@ -212,10 +230,12 @@
                 android:layout_height="125dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="56dp"
+                android:contentDescription="@string/sushi2"
                 android:scaleType="centerInside"
                 android:src="@drawable/sushi"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton8" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButton8"
+                tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/textView11"
@@ -223,7 +243,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="100dp"
-                android:text="Sushi"
+                android:text="@string/sushi"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton10" />
 
@@ -233,6 +253,7 @@
                 android:layout_height="125dp"
                 android:layout_marginStart="56dp"
                 android:layout_marginTop="40dp"
+                android:contentDescription="@string/tapas2"
                 android:scaleType="centerInside"
                 android:src="@drawable/tapas"
                 app:layout_constraintStart_toStartOf="parent"
@@ -244,7 +265,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="96dp"
                 android:layout_marginTop="4dp"
-                android:text="Tapas"
+                android:text="@string/tapas"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton11" />
 
@@ -254,10 +275,12 @@
                 android:layout_height="125dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="56dp"
+                android:contentDescription="@string/valenciano2"
                 android:scaleType="centerInside"
                 android:src="@drawable/valenciano"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton10" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButton10"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textView13"
@@ -265,7 +288,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="84dp"
-                android:text="Valenciano"
+                android:text="@string/valenciano"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton12" />
 
@@ -275,10 +298,12 @@
                 android:layout_height="125dp"
                 android:layout_marginStart="56dp"
                 android:layout_marginTop="40dp"
+                android:contentDescription="@string/vergano"
                 android:scaleType="centerInside"
                 android:src="@drawable/vegano"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton11" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButton11"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textView14"
@@ -286,7 +311,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="88dp"
                 android:layout_marginTop="4dp"
-                android:text="Vegano"
+                android:text="@string/vegano"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton13" />
 
@@ -296,7 +321,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="100dp"
-                android:text="."
+                android:text="@string/espacio"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView14" />
 

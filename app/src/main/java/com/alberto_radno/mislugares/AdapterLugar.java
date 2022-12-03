@@ -1,5 +1,6 @@
 package com.alberto_radno.mislugares;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.Space;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,8 +48,16 @@ public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> 
         int id = elegirFoto.elegirFoto(lugares.get(position).getTipo());
         holder.foto.setImageResource(id);
 
-        if(lugares.get(position).favorito == true){
+        if(lugares.get(position).favorito){
             holder.favorito.setImageResource(R.drawable.favorito);
+        }
+
+        //Si es el ultimo elemento de la lista pone un espacio en blanco
+        if(position == lugares.size()-1){
+            holder.espacio.setVisibility(View.VISIBLE);
+        }
+        else{
+            holder.espacio.setVisibility(View.GONE);
         }
     }
 
@@ -63,7 +73,9 @@ public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> 
         TextView tipo;
         ImageView foto;
         ImageButton favorito;
+        Space espacio;
 
+        @SuppressLint("UseCompatLoadingForDrawables")
         public ViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             nombre = itemView.findViewById(R.id.nombre_item);
@@ -72,6 +84,7 @@ public class AdapterLugar extends RecyclerView.Adapter<AdapterLugar.ViewHolder> 
             tipo = itemView.findViewById(R.id.tipo_item);
             foto = itemView.findViewById(R.id.foto_item);
             favorito = itemView.findViewById(R.id.favoritoButton);
+            espacio = itemView.findViewById(R.id.espacio);
 
             itemView.setOnClickListener(v -> {
                if(recyclerViewInterface != null){

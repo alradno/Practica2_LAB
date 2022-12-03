@@ -1,7 +1,9 @@
 package com.alberto_radno.mislugares;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -13,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.List;
+import java.util.Objects;
 
 public class favoritosFragment extends Fragment implements RecyclerViewInterface{
 
@@ -35,9 +38,9 @@ public class favoritosFragment extends Fragment implements RecyclerViewInterface
         return inflater.inflate(R.layout.fragment_favoritos, container, false);
     }
 
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        AppDataBase db = Room.databaseBuilder(getContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();
+        AppDataBase db = Room.databaseBuilder(requireContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();
         recyclerView = view.findViewById(R.id.recyclerView);
         lugares = db.lugarDao().findAllFavorites();
         recyclerView.setAdapter(new AdapterLugar(getContext(),lugares, this));
@@ -47,10 +50,18 @@ public class favoritosFragment extends Fragment implements RecyclerViewInterface
     @Override
     public void onItemClick(int position) {
 
+        Intent intent = new Intent(getActivity(), infoActivity.class);
+        intent.putExtra("id", lugares.get(position).getId());
+        startActivity(intent);
+
     }
 
     @Override
     public void onLongItemClick(int position) {
+        //Pasar el lugar seleccionado a la activity de editar
+        Intent intent = new Intent(getActivity(), EditarActivity.class);
+        intent.putExtra("id", lugares.get(position).getId());
+        startActivity(intent);
 
     }
 
@@ -60,7 +71,7 @@ public class favoritosFragment extends Fragment implements RecyclerViewInterface
         AppDataBase db = Room.databaseBuilder(requireContext(), AppDataBase.class, "lugares").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         Lugar lugar = db.lugarDao().findById(lugares.get(position).getId());
 
-        if(lugar.getFavorito() == false){
+        if(!lugar.getFavorito()){
             lugar.setFavorito(true);
             Toast.makeText(getContext(), "Añadido a favoritos", Toast.LENGTH_SHORT).show();
         }
@@ -69,7 +80,7 @@ public class favoritosFragment extends Fragment implements RecyclerViewInterface
             Toast.makeText(getContext(), "Eliminado de favoritos", Toast.LENGTH_SHORT).show();
         }
         db.lugarDao().update(lugar);
-        db = Room.databaseBuilder(getContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();
+        db = Room.databaseBuilder(requireContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();
 
         //Actualizamos la lista del recycler view
         recyclerView = requireView().findViewById(R.id.recyclerView);

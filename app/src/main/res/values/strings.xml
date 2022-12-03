@@ -40,6 +40,35 @@
     <string name="prueba">prueba</string>
     <string name="url_de_la_foto">URL de la foto</string>
     <string name="favorito">favorito</string>
+    <string name="tipoText">Tipo</string>
+    <string name="argentino">Argentino</string>
+    <string name="bar">Bar</string>
+    <string name="casero">Casero</string>
+    <string name="c_ctel">Cóctel</string>
+    <string name="comida_r_pida">Comida Rápida</string>
+    <string name="tapas">Tapas</string>
+    <string name="gallego">Gallego</string>
+    <string name="italiano">Italiano</string>
+    <string name="japones">Japones</string>
+    <string name="mexicano">Mexicano</string>
+    <string name="sushi">Sushi</string>
+    <string name="valenciano">Valenciano</string>
+    <string name="vegano">Vegano</string>
+    <string name="espacio">.</string>
+    <string name="argentino2">argentino</string>
+    <string name="bar2">bar</string>
+    <string name="casero2">casero</string>
+    <string name="valenciano2">valenciano</string>
+    <string name="coctel2">coctel</string>
+    <string name="comidarapida2">comidaRapida</string>
+    <string name="gallego2">gallego</string>
+    <string name="italiano2">italiano</string>
+    <string name="japones2">japones</string>
+    <string name="mexicano2">mexicano</string>
+    <string name="sushi2">sushi</string>
+    <string name="tapas2">tapas</string>
+    <string name="vergano">vergano</string>
+    <string name="manual">manual</string>
 
 
 </resources>
