@@ -58,10 +58,13 @@ public class favoritosFragment extends Fragment implements RecyclerViewInterface
 
     @Override
     public void onLongItemClick(int position) {
-        //Pasar el lugar seleccionado a la activity de editar
-        Intent intent = new Intent(getActivity(), EditarActivity.class);
-        intent.putExtra("id", lugares.get(position).getId());
-        startActivity(intent);
+        //Pasar el lugar seleccionado al fragment editarFragment
+        Fragment fragment = new editarFragment();
+        Bundle result = new Bundle();
+        result.putInt("id", lugares.get(position).getId());
+        result.putString("fragmentOrigen", "favoritosFragment");
+        fragment.setArguments(result);
+        getParentFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).commit();
 
     }
 

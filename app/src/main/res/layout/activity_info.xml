@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fadingEdge="horizontal"
-    tools:context=".EditarActivity">
+    tools:context=".infoActivity">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -26,8 +26,8 @@
                 android:id="@+id/eliminarButton"
                 android:layout_width="63dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_marginRight="20sp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="20sp"
                 android:backgroundTint="#FC686565"
                 app:icon="@drawable/papelera"
                 tools:ignore="SpeakableTextPresentCheck" />
@@ -64,7 +64,7 @@
                 android:textAlignment="center"
                 android:textColorHint="#78909C"
                 android:textSize="20sp"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TextViewEdits,TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/localizacion_editado"
@@ -79,7 +79,7 @@
                 android:textAlignment="center"
                 android:textColorHint="#78909C"
                 android:textSize="20sp"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TextViewEdits,TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/tipo_editado"
@@ -94,7 +94,7 @@
                 android:textAlignment="center"
                 android:textColorHint="#78909C"
                 android:textSize="20sp"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TextViewEdits,TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/telefono_editado"
@@ -109,7 +109,7 @@
                 android:textAlignment="center"
                 android:textColorHint="#78909C"
                 android:textSize="20sp"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                tools:ignore="SpeakableTextPresentCheck,TextViewEdits,TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/url_editado"
@@ -124,7 +124,7 @@
                 android:textAlignment="center"
                 android:textColorHint="#78909C"
                 android:textSize="20sp"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TextViewEdits,TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/comentario_editado"
@@ -139,7 +139,7 @@
                 android:inputType="textMultiLine"
                 android:padding="30sp"
                 android:textColorHint="#78909C"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextContrastCheck" />
+                tools:ignore="SpeakableTextPresentCheck,TextContrastCheck,TextViewEdits,TouchTargetSizeCheck" />
 
             <Button
                 android:id="@+id/aceptarButton_editado"

@@ -1,9 +1,13 @@
 package com.alberto_radno.mislugares;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +17,15 @@ import android.widget.ImageButton;
 
 public class TipoFragment extends Fragment implements View.OnClickListener {
 
+    String fragmentOrigen;
     String nombreBuscado;
     String localizacionBuscada;
     float valoracionBuscada;
     String tipoBuscado;
+    String telefonoEditado;
+    String urlEditada;
+    String comentarioEditado;
+    int id;
 
 
     public TipoFragment() {
@@ -31,10 +40,20 @@ public class TipoFragment extends Fragment implements View.OnClickListener {
 
         //Recogemos los datos del fragment mainFragment rellenos hasta ahora
         if (bundle != null) {
+            fragmentOrigen = bundle.getString("fragmentOrigen");
+            if(fragmentOrigen.equals("editarFragment")){
+                telefonoEditado = bundle.getString("telefonoEditado");
+                urlEditada = bundle.getString("urlEditada");
+                comentarioEditado = bundle.getString("comentarioEditado");
+                id = bundle.getInt("id");
+                Log.i("___id", String.valueOf(id));
+            }
             nombreBuscado = bundle.getString("nombreBuscado");
             localizacionBuscada = bundle.getString("localizacionBuscada");
             valoracionBuscada = bundle.getFloat("valoracionBuscada");
             tipoBuscado = bundle.getString("tipoBuscado");
+        }else{
+            Log.i("___bundle", "null");
         }
     }
 
@@ -45,7 +64,7 @@ public class TipoFragment extends Fragment implements View.OnClickListener {
         return inflater.inflate(R.layout.fragment_tipo, container, false);
     }
 
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ImageButton b1 = view.findViewById(R.id.imageButton);
         b1.setOnClickListener(this);
@@ -76,6 +95,7 @@ public class TipoFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -119,15 +139,34 @@ public class TipoFragment extends Fragment implements View.OnClickListener {
                 tipoBuscado = "vegano";
                 break;
         }
-        //Abrir el fragmento de mainFragment
-        mainFragment fragment = new mainFragment();
-        //Devolvemos los datos a mainFragment
-        Bundle bundle = new Bundle();
-        bundle.putString("nombreBuscado", nombreBuscado);
-        bundle.putString("localizacionBuscada", localizacionBuscada);
-        bundle.putFloat("valoracionBuscada", valoracionBuscada);
-        bundle.putString("tipoBuscado", tipoBuscado);
-        fragment.setArguments(bundle);
-        getParentFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).commit();
+
+        if(fragmentOrigen.equals("mainFragment")) {
+            Bundle bundle = new Bundle();
+            bundle.putString("nombreBuscado", nombreBuscado);
+            bundle.putString("localizacionBuscada", localizacionBuscada);
+            bundle.putFloat("valoracionBuscada", valoracionBuscada);
+            bundle.putString("tipoBuscado", tipoBuscado);
+            //Abrir el fragmento de mainFragment
+            Fragment fragment = new mainFragment();
+            //Devolvemos los datos a mainFragment
+            fragment.setArguments(bundle);
+            getParentFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).commit();
+        }
+        else if(fragmentOrigen.equals("editarFragment")) {
+            //Abrir fragment de editarFragment
+            Bundle bundle = new Bundle();
+            bundle.putString("fragmentOrigen", "tipoFragment");
+            bundle.putString("nombreBuscado", nombreBuscado);
+            bundle.putString("localizacionBuscada", localizacionBuscada);
+            bundle.putFloat("valoracionBuscada", valoracionBuscada);
+            bundle.putString("tipoBuscado", tipoBuscado);
+            bundle.putString("telefonoEditado", telefonoEditado);
+            bundle.putString("urlEditada", urlEditada);
+            bundle.putString("comentarioEditado", comentarioEditado);
+            bundle.putInt("id", id);
+            Fragment fragment = new editarFragment();
+            fragment.setArguments(bundle);
+            getParentFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).commit();
+        }
     }
 }

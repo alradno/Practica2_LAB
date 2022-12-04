@@ -2,6 +2,7 @@ package com.alberto_radno.mislugares;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -14,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
+
+import java.util.Objects;
 
 public class mainFragment extends Fragment {
 
@@ -58,7 +61,7 @@ public class mainFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
 
@@ -75,23 +78,11 @@ public class mainFragment extends Fragment {
         ratingBar.setRating(valoracionBuscada);
         tipoText.setText(tipoBuscado);
 
-        anadir.setOnClickListener( v -> {
-            {
-                anadir();
-            }
-        });
+        anadir.setOnClickListener( v -> anadir());
 
-        buscar.setOnClickListener( v -> {
-            {
-                buscar();
-            }
-        });
+        buscar.setOnClickListener( v -> buscar());
 
-        tipoText.setOnClickListener( v -> {
-            {
-                tipo();
-            }
-        });
+        tipoText.setOnClickListener( v -> tipo());
 
     }
 
@@ -106,7 +97,7 @@ public class mainFragment extends Fragment {
             //Crear objeto Lugar
             Lugar lugar = new Lugar(nombre, localizacion, valoracion, tipo);
             //Insertar en la base de datos
-            AppDataBase db = Room.databaseBuilder(getContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();
+            AppDataBase db = Room.databaseBuilder(requireContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();
             db.lugarDao().insert(lugar);
             Toast.makeText(getContext(), "Lugar añadido", Toast.LENGTH_SHORT).show();
 
@@ -123,6 +114,7 @@ public class mainFragment extends Fragment {
 
     public void buscar(){
 
+        String fragmentOrigen = "mainFragment";
         String nombre = nombreText.getText().toString();
         String localizacion = localizacionText.getText().toString();
         float valoracion = ratingBar.getRating();
@@ -131,6 +123,7 @@ public class mainFragment extends Fragment {
         Bundle result = new Bundle();
         Fragment fragment = new buscadoFragment();
 
+        result.putString("fragmentOrigen", fragmentOrigen);
         result.putString("nombreBuscado", nombre);
         result.putString("localizacionBuscada", localizacion);
         result.putFloat("valoracionBuscada", valoracion);
@@ -150,6 +143,7 @@ public class mainFragment extends Fragment {
         String localizacion = localizacionText.getText().toString();
         float valoracion = ratingBar.getRating();
         String tipo = tipoText.getText().toString();
+        String origenFragment = "mainFragment";
 
         Bundle result = new Bundle();
         Fragment fragment = new TipoFragment();
@@ -158,6 +152,7 @@ public class mainFragment extends Fragment {
         result.putString("localizacionBuscada", localizacion);
         result.putFloat("valoracionBuscada", valoracion);
         result.putString("tipoBuscado", tipo);
+        result.putString("fragmentOrigen", origenFragment);
 
         fragment.setArguments(result);
 
