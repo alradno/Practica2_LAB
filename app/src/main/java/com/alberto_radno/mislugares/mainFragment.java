@@ -1,11 +1,11 @@
 package com.alberto_radno.mislugares;
 
+import android.media.MediaParser;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.room.Room;
 
 import android.view.LayoutInflater;
@@ -16,12 +16,12 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
-import java.util.Objects;
 
 public class mainFragment extends Fragment {
 
     Button anadir;
     Button buscar;
+    MediaPlayer mp;
 
     EditText nombreText;
     EditText localizacionText;
@@ -73,6 +73,8 @@ public class mainFragment extends Fragment {
         ratingBar = view.findViewById(R.id.ratingBar_item);
         tipoText = view.findViewById(R.id.tipoText);
 
+        mp = MediaPlayer.create(getContext(), R.raw.click);
+
         nombreText.setText(nombreBuscado);
         localizacionText.setText(localizacionBuscada);
         ratingBar.setRating(valoracionBuscada);
@@ -87,6 +89,8 @@ public class mainFragment extends Fragment {
     }
 
     public void anadir() {
+        //Sonido de Click
+        mp.start();
         //Obtener datos de los campos
         String nombre = nombreText.getText().toString();
         String localizacion = localizacionText.getText().toString();
@@ -113,7 +117,7 @@ public class mainFragment extends Fragment {
     }
 
     public void buscar(){
-
+        mp.start();
         String fragmentOrigen = "mainFragment";
         String nombre = nombreText.getText().toString();
         String localizacion = localizacionText.getText().toString();
@@ -130,9 +134,6 @@ public class mainFragment extends Fragment {
         result.putString("tipoBuscado", tipo);
 
         fragment.setArguments(result);
-
-        /*NavController navController = Navigation.findNavController(this.requireView());
-        navController.navigate(R.id.action_mainFragment_to_buscadoFragment, result);*/
 
         getParentFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).commit();
 
@@ -155,9 +156,6 @@ public class mainFragment extends Fragment {
         result.putString("fragmentOrigen", origenFragment);
 
         fragment.setArguments(result);
-
-        /*NavController navController = Navigation.findNavController(this.requireView());
-        navController.navigate(R.id.action_mainFragment_to_buscadoFragment, result);*/
 
         getParentFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).commit();
     }

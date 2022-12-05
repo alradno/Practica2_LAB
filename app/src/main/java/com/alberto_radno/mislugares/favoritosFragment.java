@@ -11,11 +11,9 @@ import androidx.room.Room;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.List;
-import java.util.Objects;
 
 public class favoritosFragment extends Fragment implements RecyclerViewInterface{
 
@@ -74,13 +72,13 @@ public class favoritosFragment extends Fragment implements RecyclerViewInterface
         AppDataBase db = Room.databaseBuilder(requireContext(), AppDataBase.class, "lugares").allowMainThreadQueries().fallbackToDestructiveMigration().build();
         Lugar lugar = db.lugarDao().findById(lugares.get(position).getId());
 
-        if(!lugar.getFavorito()){
-            lugar.setFavorito(true);
-            Toast.makeText(getContext(), "Añadido a favoritos", Toast.LENGTH_SHORT).show();
-        }
-        else{
+        if(lugar.getFavorito()){
             lugar.setFavorito(false);
             Toast.makeText(getContext(), "Eliminado de favoritos", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            lugar.setFavorito(true);
+            Toast.makeText(getContext(), "Añadido a favoritos", Toast.LENGTH_SHORT).show();
         }
         db.lugarDao().update(lugar);
         db = Room.databaseBuilder(requireContext(), AppDataBase.class, "lugares").allowMainThreadQueries().build();

@@ -80,21 +80,9 @@ public class Lugar {
 
     public void setUrl(String url) { this.url = url; }
 
-    /*public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }*/
-
     public String getComentario() { return comentario; }
 
     public void setComentario(String comentario) { this.comentario = comentario; }
-
-    public String getFoto() { return foto; }
-
-    public void setFoto(String foto) { this.foto = foto; }
 
     public boolean getFavorito() { return favorito; }
 

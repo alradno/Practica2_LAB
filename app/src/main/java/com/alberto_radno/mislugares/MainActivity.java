@@ -1,16 +1,14 @@
 package com.alberto_radno.mislugares;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.alberto_radno.mislugares.databinding.ActivityMainBinding;
-import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
 
@@ -18,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
         //Mostrar el icono de la app en el action bar
         getSupportActionBar().setLogo(R.mipmap.icono_app);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
+
+
+        ActionBar actionBar;
+        actionBar = getSupportActionBar();
+
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#0F9D58"));
+        actionBar.setBackgroundDrawable(colorDrawable);
 
         //Si pulsa en el icono de buscar del navigation bar, se abre el fragment buscadoFragment
         binding.navigationView.setOnItemSelectedListener(item -> {

@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
-import java.util.Objects;
 
 public class editarFragment extends Fragment {
 
@@ -103,14 +101,6 @@ public class editarFragment extends Fragment {
         urlEditada.setText(lugar.getUrl());
         comentarioEditado.setText(lugar.getComentario());
 
-        //Colocar foto
-
-
-        /*if(lugar.getFoto() != null){
-            urlEditadaFoto.setText(lugar.getFoto());
-            Glide.with(this).load(lugar.getFoto()).into(foto);
-        }*/
-
         aceptar.setOnClickListener(v -> {
             lugar.setNombre(nombreEditado.getText().toString());
             lugar.setLocalizacion(localizacionEditada.getText().toString());
@@ -132,18 +122,6 @@ public class editarFragment extends Fragment {
         eliminar.setOnClickListener(v -> db.lugarDao().delete(lugar));
 
         tipoEditado.setOnClickListener(v -> tipo());
-
-
-        /*//Si hace click en foto_info, se abre el selector de fotos y selecciona una foto de la galeria
-        foto.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, 10);
-            //Asigna la foto seleccionada a la ImageView foto y la guarda en la base de datos
-            foto.setImageURI(intent.getData());
-            lugar.setFoto(intent.getData().toString());
-        });*/
-
-
 
     }
 
@@ -171,9 +149,6 @@ public class editarFragment extends Fragment {
         result.putInt("id", id);
 
         fragment.setArguments(result);
-
-        /*NavController navController = Navigation.findNavController(this.requireView());
-        navController.navigate(R.id.action_mainFragment_to_buscadoFragment, result);*/
 
         getParentFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, fragment).commit();
     }
